@@ -29,10 +29,12 @@ const userSchema = new mongoose.Schema(
             type: String,
             default: "",
         },
-        friends: {
-            type: Array,
-            default: [],
-        },
+        friends: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "User",
+            },
+        ],
         location: String,
         occupation: String,
         viewedProfile: { type: Number, default: 0 },
