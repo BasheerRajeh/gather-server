@@ -1,4 +1,6 @@
 const Joi = require("joi");
+const User = require("../models/User");
+const mongoose = require("mongoose");
 
 exports.validateUser = (user) => {
     const schema = Joi.object({
@@ -15,4 +17,32 @@ exports.validateUser = (user) => {
     });
 
     return schema.validate(user);
+};
+
+exports.userGet = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(400).send("Invalid User ID");
+        }
+
+        const user = await User.findById(id);
+
+        if (!user)
+            return res.status(404).send("The User with the given ID not found");
+
+        res.send(user);
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+};
+
+exports.userGetAll = async (req, res) => {
+    try {
+        const users = await User.find();
+        res.send(users);
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
 };

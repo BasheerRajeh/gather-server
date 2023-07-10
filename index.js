@@ -1,13 +1,12 @@
 const express = require("express");
+const setRoutes = require("./routes/routes");
 
 const app = express();
 
 require("./middleware/app")(app);
 require("./startup/db")();
 
-app.get("/", (req, res) => {
-    res.send({ message: "Hello World" });
-});
+setRoutes(app);
 
 const PORT = process.env.PORT || 3000;
 const server = app.listen(PORT, () => {
