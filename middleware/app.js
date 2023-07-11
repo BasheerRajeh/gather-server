@@ -3,6 +3,7 @@ const helmet = require("helmet");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const config = require('config');
 
 module.exports = function (app) {
     app.use(express.json());
@@ -12,5 +13,5 @@ module.exports = function (app) {
     app.use(bodyParser.json({ limit: "30mb" }));
     app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
     app.use(cors());
-    app.use(express.static("public/assets"));
+    app.use(express.static(config.get("assetsURI")));
 };

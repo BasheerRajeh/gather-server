@@ -1,10 +1,11 @@
-const { default: mongoose } = require("mongoose");
+const mongoose = require("mongoose");
+const config = require("config");
 
 module.exports = function () {
-    const db = "mongodb://127.0.0.1:27017/gather";
+    const DB_URL = config.get("dbURL");
     mongoose
-        .connect(db)
-        .then(() => console.log(`Connected to ${db}`))
+        .connect(DB_URL)
+        .then(() => console.log(`Connected to database`))
         .catch((e) => {
             console.log(`Error: ${e.message}`);
         });
