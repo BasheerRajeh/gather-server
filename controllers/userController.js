@@ -106,3 +106,12 @@ exports.userCreate = async (req, res) => {
         res.status(500).send(error.message);
     }
 };
+
+exports.userGetMe = async (req, res) => {
+    try {
+        const user = await User.findById(req.user._id).select("-password");
+        res.send(user);
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+};
