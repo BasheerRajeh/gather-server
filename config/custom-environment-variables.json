@@ -1,3 +1,4 @@
 {
-    "dbURL": "gather_dbURL"
+    "dbURL": "gather_dbURL",
+    "jwtPrivateKey": "gather_jwtPrivateKey"
 }
