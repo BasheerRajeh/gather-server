@@ -1,10 +1,15 @@
 const userRoutes = require("./userRoutes");
+const postRoutes = require("./postRoutes");
 const authRoutes = require("./authRoutes");
 
 const routes = [
     {
         path: "/users",
         handller: userRoutes,
+    },
+    {
+        path: "/posts",
+        handller: postRoutes,
     },
     {
         path: "/",
